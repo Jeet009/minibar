@@ -1,22 +1,21 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
+import colors from './constants/colors';
+import Navigation from './routes/Navigation';
 
 const App = () => {
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Text>MiniBar</Text>
-      </SafeAreaView>
-    </>
+    <SafeAreaView style={styles.container}>
+      <Navigation />
+      {/* <Text>Hello</Text> */}
+    </SafeAreaView>
   );
 };
 
 export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
