@@ -1,17 +1,16 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, Linking } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet, Linking } from 'react-native'
 import colors from '../../constants/colors';
 
 export default function FloatingButton() {
-    const [buttonText, setButtonText] = useState('Incase of queries, Contact Us')
+    const [buttonText] = useState('Incase of queries, Contact Us')
     const endingTouch = () => {
         Linking.openURL('https://wa.me/919883828261');
-        setButtonText('Incase of queries, Contact Us')
     }
     return (    
-        <View style={styles.bg} onTouchEnd={endingTouch} onTouchStart={() => setButtonText('Opening Whatsapp')}>  
+        <TouchableOpacity style={styles.bg} onPress={endingTouch}>  
             <Text style={styles.text}>{buttonText}</Text>
-        </View>        
+        </TouchableOpacity>        
     )
 }
 const styles = StyleSheet.create({

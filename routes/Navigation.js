@@ -4,6 +4,8 @@ import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
 import SearchScreen from '../screens/SearchScreen';
+import CategoryScreen from '../screens/CategoryScreen';
+import colors from '../constants/colors';
 
 // const AppContainer = createStackNavigator({
 //   'Home Screen': HomeScreen,
@@ -25,6 +27,18 @@ function AppContainer() {
         />
         <Stack.Screen name="Product" component={ProductScreen} />
         <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Category" component={CategoryScreen}
+          options={{
+            title: 'Select Category',
+            headerStyle: { backgroundColor: colors.black },
+            headerTintColor: colors.white,
+            headerTitleStyle: {
+              fontFamily: 'Poppins-Light',
+              textTransform: 'uppercase',
+              fontSize: 15,
+              color: colors.white
+            },
+          }} />
       </Stack.Navigator>
     </NavigationContainer>
   );

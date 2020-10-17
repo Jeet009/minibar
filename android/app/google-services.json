@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1049209581642",
+    "firebase_url": "https://minibar-7576c.firebaseio.com",
+    "project_id": "minibar-7576c",
+    "storage_bucket": "minibar-7576c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1049209581642:android:e24f2ed009cff0c85f36b3",
+        "android_client_info": {
+          "package_name": "com.minibar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1049209581642-d886gurj025e0hp9nh72d1eteqth6820.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA4popuMkvjN4-Lq-W_zJbgIZyI_Y2Lhu4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1049209581642-d886gurj025e0hp9nh72d1eteqth6820.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
