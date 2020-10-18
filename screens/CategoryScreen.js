@@ -20,7 +20,7 @@ export default function CategoryScreen({ route }) {
                 });
 
                 setCategory(data);
-                console.log(data);
+                // console.log(data);
             });
 
         // Unsubscribe from events when no longer in use
@@ -34,7 +34,9 @@ export default function CategoryScreen({ route }) {
                 nestedText={true}
                 bottomText={false}
                 name={itemData.item.name}
-                image={itemData.item.imgUrl} />
+                image={itemData.item.imgUrl}
+                navigationPath='Product'
+                />
             </View>
         )
     }
@@ -47,7 +49,13 @@ export default function CategoryScreen({ route }) {
                     columnWrapperStyle={{ flexWrap: 'wrap', flex: 1, marginTop: 5,  }}
                     ListHeaderComponent={
                     <View style={styles.topBgContainer}>
-                    <BoxComponent name={route.params.title} image={route.params.image} nestedText={false} bottomText={true} />
+                            <BoxComponent
+                                name={route.params.title}
+                                image={route.params.image}
+                                nestedText={false}
+                                bottomText={true}
+                                navigationPath='Home'
+                                 />
                     </View>
                     }
                     numColumns={3}

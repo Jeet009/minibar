@@ -25,7 +25,19 @@ function AppContainer() {
           component={HomeScreen}
           options={{headerShown: false}}
         />
-        <Stack.Screen name="Product" component={ProductScreen} />
+        <Stack.Screen name="Product" component={ProductScreen}
+        options={{
+            title: 'Choose Product',
+            headerStyle: { backgroundColor: colors.black },
+            headerTintColor: colors.white,
+            headerTitleStyle: {
+              fontFamily: 'Poppins-Light',
+              textTransform: 'uppercase',
+              fontSize: 15,
+              color: colors.white
+            },
+          }}
+        />
         <Stack.Screen name="Search" component={SearchScreen} />
         <Stack.Screen name="Category" component={CategoryScreen}
           options={{

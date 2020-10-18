@@ -25,7 +25,10 @@ export default function BoxComponent({name, image, bottomText, nestedText, title
             />
             <Text style={styles.text}>{name}</Text>
             </TouchableOpacity>}
-            {nestedText && <>
+            {nestedText && <TouchableOpacity style={styles.touchO} onPress={() => {
+              navigation.navigate(navigationPath, {
+                dbParam: name
+            })}}>
             <ImageBackground
             resizeMode="cover"
             source={{uri: image}}
@@ -38,7 +41,7 @@ export default function BoxComponent({name, image, bottomText, nestedText, title
                     </View>
             
             </ImageBackground>
-            </>
+            </TouchableOpacity>
             }
         </View>
     )
