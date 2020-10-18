@@ -4,7 +4,7 @@ import colors from '../../constants/colors';
 import {useNavigation} from '@react-navigation/native';
 
 
-export default function BoxComponent({name, image, bottomText, nestedText, title, type, navigationPath}) {
+export default function BoxComponent({name, image, bottomText, nestedText, title, type, navigationPath, productList}) {
     const navigation = useNavigation();
     return (
         <View style={bottomText ? styles.whiteBg : styles.whiteBgN}>
@@ -27,7 +27,8 @@ export default function BoxComponent({name, image, bottomText, nestedText, title
             </TouchableOpacity>}
             {nestedText && <TouchableOpacity style={styles.touchO} onPress={() => {
               navigation.navigate(navigationPath, {
-                dbParam: name
+                  dbParam: name,
+                  productList : productList
             })}}>
             <ImageBackground
             resizeMode="cover"

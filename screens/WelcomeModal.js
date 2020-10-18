@@ -22,6 +22,7 @@ export default function WelcomeModal() {
   const [screenOne, setScreenOne] = useState(true);
   const [screenTwo, setScreenTwo] = useState(false);
   const [userName, setUserName] = useState();
+  const [userPhoneNo, setUserPhoneNo] = useState();
   const [bgImage, setBgImage] = useState(backgroundImage);
   const [modalVisibility, setModalVisibility] = useState(true);
   return (
@@ -62,7 +63,7 @@ export default function WelcomeModal() {
                 <View style={{flex: 1, justifyContent: 'center'}}>
                   <View>
                     <Text style={styles.tagLine}>
-                      {userName == null ? 'What is your name ?' : 'Welcome'}
+                      Welcome
                     </Text>
                     <Text style={styles.title}>
                       {' '}
@@ -76,10 +77,23 @@ export default function WelcomeModal() {
                       textAlign="center"
                       onChangeText={(text) => setUserName(text)}
                     />
+                    <Text style={styles.tagLine}>
+                      Name
+                    </Text>
+                    <TextInput
+                      value={userPhoneNo}
+                      style={styles.textInput}
+                      textAlign="center"
+                      onChangeText={(text) => setUserPhoneNo(text)}
+                      keyboardType='number-pad'
+                    />
+                    <Text style={styles.tagLine}>
+                      Phone Number
+                    </Text>
                     <TouchableOpacity
                       style={styles.button}
                       onPress={() => {
-                        AsyncStorage.setItem('test5NewUser', userName).then(
+                        AsyncStorage.setItem('test5NewUser', JSON.stringify({ userName: userName, userPhoneNo: userPhoneNo})).then(
                           () => {
                             setModalVisibility(false);
                           },

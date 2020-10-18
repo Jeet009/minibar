@@ -1,9 +1,53 @@
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import React, {useState, useEffect} from 'react'
+import { Image, StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import {Icon} from 'react-native-elements';
 import colors from '../../constants/colors';
+import firestore from '@react-native-firebase/firestore';
+import {useNavigation} from '@react-navigation/native';
 
-export default function ListComponent({name}) {
+
+export default function ListComponent({ name, id, price, category }) {
+  const [userData, setUserData] = useState()
+  const [cartData, setCartData] = useState()
+  const navigation = useNavigation();
+
+  // Getting User Data From Local Storage 
+  useEffect(() => {
+    AsyncStorage.getItem('test5NewUser').then((data) => {
+        setUserData(JSON.parse(data));
+        // Fetching Cart Data
+        const subscriber = firestore()
+        .collection('cart')
+        .where('customer_phoneNo', '==', JSON.parse(data).userPhoneNo)
+        .onSnapshot((querySnapshot) => {
+          const dataArray = [];
+          querySnapshot.forEach((documentSnapshot) => {
+             dataArray.push(documentSnapshot.data().product_id);
+           });
+            setCartData(dataArray);
+            console.log(dataArray)
+        });
+        return () => subscriber();
+    });
+  }, [setUserData, setCartData]);
+  
+  
+    
+  //   Handling Cart Addition   
+  const handleCartAddition = (name, id, price, category) => {
+    firestore().collection('cart').add({
+        product_name: name,
+        customer_name: userData.userName,
+        customer_phoneNo: userData.userPhoneNo,
+        product_id: id,
+        product_price: price,
+        product_category: category
+    }).then(() => {
+        console.log('Added To Cart')
+    })  
+    }
+    
+    
     return (
         <View style={styles.container}>
             <Image
@@ -16,18 +60,32 @@ export default function ListComponent({name}) {
             {name}
             </Text>
             <Text style={styles.para}>
-                    Price : 250 /-
+                    Price : {price} /-
             </Text>
             <Text style={styles.para}>
-                    Category : Wine
+                    Category : {category}
             </Text>
             </View>
-            <Icon
-            name="plus-square"
-            type="font-awesome"
-            color="grey"
-            size={30}
-            />
+            {
+                cartData && cartData.includes(id) ? (
+                    <Icon
+                    name="shopping-bag"
+                    type="font-awesome"
+                    color="grey"
+                    size={30}
+                    onPress={() => {navigation.navigate('Cart')}}
+                    /> 
+                ) : (
+                      
+                    <Icon
+                    name="plus-square"
+                    type="font-awesome"
+                    color="grey"
+                    size={30}
+                    onPress={() => handleCartAddition(name, id, price, category)}
+                    />
+                )
+            }
         </View>
     )
 }

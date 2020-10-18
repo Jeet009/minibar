@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, StyleSheet, FlatList} from 'react-native';
+import { StyleSheet, FlatList} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import ListComponent from '../components/IndividualComponents/ListComponent';
 import colors from '../constants/colors';
@@ -7,10 +7,11 @@ import firestore from '@react-native-firebase/firestore';
 
 
 export default function ProductScreen({route}) {
-  const [product, setProduct] = useState([])
+  const [product, setProduct] = useState([]);
+  
   useEffect(() => {
     const subscriber = firestore()
-            .collection('productListOne')
+            .collection(route.params.productList.toString())
             .where('category', '==', route.params.dbParam)
             .onSnapshot((querySnapshot) => {
                 const data = [];
@@ -30,7 +31,11 @@ export default function ProductScreen({route}) {
   }, [setProduct])
   function renderResult(itemData) {
     return (
-      <ListComponent name={itemData.item.name} />
+      <ListComponent
+        name={itemData.item.name}
+        id={itemData.item.key}
+        price={itemData.item.price}
+        category={itemData.item.category} />
     )
   }
   return (
@@ -43,7 +48,7 @@ export default function ProductScreen({route}) {
       data={product}
       renderItem={renderResult}
       />
-      </LinearGradient>
+    </LinearGradient>
   );
 }
 

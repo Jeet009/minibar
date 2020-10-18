@@ -31,7 +31,7 @@ export default function HomeScreen() {
   let tagLine = userName ? 'Ciao, ' + userName : 'Looking For Something ?';
   useEffect(() => {
     AsyncStorage.getItem('test5NewUser').then((data) => {
-      setUserName(data);
+      setUserName(JSON.parse(data).userName);
       data == null ? setNewUser(true) : setNewUser(false);
     });
   }, [setNewUser, setUserName]);

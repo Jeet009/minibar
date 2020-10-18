@@ -11,11 +11,11 @@ export default function SearchBarComponent() {
     <TouchableOpacity
       style={styles.searchBar}
       onPress={() => {
-        navigation.push('Search');
+        navigation.push('Cart');
       }}>
-      <Text style={styles.text}>Search ...</Text>
+      <Text style={styles.text}>What's in your bag ...</Text>
       <Icon
-        name="search"
+        name="shopping-bag"
         type="font-awesome"
         color="grey"
         style={styles.icon}
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   searchBar: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
     backgroundColor: colors.white,
     margin:

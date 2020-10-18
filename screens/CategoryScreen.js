@@ -6,6 +6,21 @@ import colors from '../constants/colors';
 import firestore from '@react-native-firebase/firestore';
 export default function CategoryScreen({ route }) {
     const [category, setCategory] = useState([]);
+    const [list, setList] = useState();
+    useEffect(() => {
+    const subscriber = firestore()
+            .collection('manageList')
+            .onSnapshot((querySnapshot) => {
+              const data = [];
+                querySnapshot.forEach((documentSnapshot) => {
+                    data.push(documentSnapshot.data().LiveProductList) 
+                });
+                setList(data);
+            });
+
+        // Unsubscribe from events when no longer in use
+        return () => subscriber();
+    }, [setList])
     useEffect(() => {
         const subscriber = firestore()
             .collection('categories')
@@ -36,6 +51,7 @@ export default function CategoryScreen({ route }) {
                 name={itemData.item.name}
                 image={itemData.item.imgUrl}
                 navigationPath='Product'
+                productList={list}    
                 />
             </View>
         )

@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, HeaderTitle} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import ProductScreen from '../screens/ProductScreen';
-import SearchScreen from '../screens/SearchScreen';
+import CartScreen from '../screens/CartScreen';
 import CategoryScreen from '../screens/CategoryScreen';
 import colors from '../constants/colors';
 
@@ -38,7 +38,19 @@ function AppContainer() {
             },
           }}
         />
-        <Stack.Screen name="Search" component={SearchScreen} />
+        <Stack.Screen name="Cart" component={CartScreen} 
+          options={{
+            title: 'Your Bag',
+            headerStyle: { backgroundColor: colors.black },
+            headerTintColor: colors.white,
+            headerTitleStyle: {
+              fontFamily: 'Poppins-Light',
+              textTransform: 'uppercase',
+              fontSize: 15,
+              color: colors.white
+            },
+          }}
+        />
         <Stack.Screen name="Category" component={CategoryScreen}
           options={{
             title: 'Select Category',
