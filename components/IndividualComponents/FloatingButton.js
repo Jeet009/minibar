@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, Text, StyleSheet, Linking } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet, Linking, View } from 'react-native'
 import colors from '../../constants/colors';
 
 export default function FloatingButton() {
@@ -8,9 +8,11 @@ export default function FloatingButton() {
         Linking.openURL('https://wa.me/919883828261');
     }
     return (    
-        <TouchableOpacity style={styles.bg} onPress={endingTouch}>  
+        <>
+            <TouchableOpacity style={styles.bg} onPress={endingTouch}>  
             <Text style={styles.text}>{buttonText}</Text>
-        </TouchableOpacity>        
+            </TouchableOpacity>
+        </>       
     )
 }
 const styles = StyleSheet.create({

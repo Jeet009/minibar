@@ -35,7 +35,9 @@ export default function ProductScreen({route}) {
         name={itemData.item.name}
         id={itemData.item.key}
         price={itemData.item.price}
-        category={itemData.item.category} />
+        category={itemData.item.category}
+        imgUrl={itemData.item.imgUrl}
+      />
     )
   }
   return (

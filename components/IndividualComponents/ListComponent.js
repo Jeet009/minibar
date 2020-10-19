@@ -6,7 +6,7 @@ import firestore from '@react-native-firebase/firestore';
 import {useNavigation} from '@react-navigation/native';
 
 
-export default function ListComponent({ name, id, price, category }) {
+export default function ListComponent({ name, id, price, category, imgUrl }) {
   const [userData, setUserData] = useState()
   const [cartData, setCartData] = useState()
   const navigation = useNavigation();
@@ -25,7 +25,6 @@ export default function ListComponent({ name, id, price, category }) {
              dataArray.push(documentSnapshot.data().product_id);
            });
             setCartData(dataArray);
-            console.log(dataArray)
         });
         return () => subscriber();
     });
@@ -34,25 +33,26 @@ export default function ListComponent({ name, id, price, category }) {
   
     
   //   Handling Cart Addition   
-  const handleCartAddition = (name, id, price, category) => {
+  const handleCartAddition = (name, id, price, category, imgUrl) => {
     firestore().collection('cart').add({
         product_name: name,
         customer_name: userData.userName,
         customer_phoneNo: userData.userPhoneNo,
         product_id: id,
         product_price: price,
-        product_category: category
+        product_category: category,
+        quantity: 1,
+        imgUrl: imgUrl
     }).then(() => {
         console.log('Added To Cart')
     })  
     }
     
-    
     return (
         <View style={styles.container}>
             <Image
             resizeMode="cover"
-            source={{uri: 'https://www.wine-searcher.com/images/producer/30/00105330-1-3.jpg'}}
+            source={{uri: imgUrl}}
             style={styles.image}   
             />
             <View>
@@ -82,7 +82,7 @@ export default function ListComponent({ name, id, price, category }) {
                     type="font-awesome"
                     color="grey"
                     size={30}
-                    onPress={() => handleCartAddition(name, id, price, category)}
+                    onPress={() => handleCartAddition(name, id, price, category, imgUrl)}
                     />
                 )
             }
