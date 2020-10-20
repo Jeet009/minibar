@@ -5,7 +5,7 @@ import colors from '../../constants/colors';
 export default function FloatingButton() {
     const [buttonText] = useState('Incase of queries, Contact Us')
     const endingTouch = () => {
-        Linking.openURL('https://wa.me/919883828261');
+        Linking.openURL('https://wa.me/919046663330');
     }
     return (    
         <>

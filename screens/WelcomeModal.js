@@ -105,7 +105,7 @@ export default function WelcomeModal() {
                 </View>
               )}
             </View>
-            <Text style={styles.footerText}>Developed By GoWave</Text>
+            <Text style={styles.footerText}>Developed By Arnab Mondal</Text>
           </LinearGradient>
         </ImageBackground>
       </Modal>

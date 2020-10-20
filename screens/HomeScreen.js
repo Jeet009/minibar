@@ -4,7 +4,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import colors from '../constants/colors';
 import bgTopImage from '../assets/images/red-wine-2443699_640.jpg';
 import alcoholic from '../assets/images/alocoholic.jpg';
-import nonalcoholic from '../assets/images/non-alcoholic.jpg';
+import nonalcoholic from '../assets/images/nuts-3248743_1920.jpg';
 import BackgroundImageComponent from '../components/IndividualComponents/BackgroundImageComponent';
 import WelcomeModal from './WelcomeModal';
 import BoxComponent from '../components/IndividualComponents/BoxComponent';
@@ -16,19 +16,19 @@ export default function HomeScreen() {
   //Parent Type
   const parent_type = [
   {
-    name: 'Alcoholic \n Beverage',
-    title: 'Alcoholic Beverage',
+    name: 'Alcoholic \n Drinks',
+    title: 'Alcoholic Drinks',
     image: alcoholic,
     type: 'alcoholic'
   },
   {
-    name: 'Non-Alcoholic \n Beverage',
-    title: 'Non-Alcoholic Beverage',
+    name: 'Snacks \n & \n Beverage', //Snacks & Beverage is Non-Alcoholic
+    title: 'Snacks & Beverage',
     image: nonalcoholic,
     type: 'non-alcoholic'
   }
   ]
-  let tagLine = userName ? 'Ciao, ' + userName : 'Looking For Something ?';
+  let tagLine = userName ? 'Hello, ' + userName : 'Looking For Something ?';
   useEffect(() => {
     AsyncStorage.getItem('test5NewUser').then((data) => {
       setUserName(JSON.parse(data).userName);

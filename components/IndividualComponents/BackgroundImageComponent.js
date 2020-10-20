@@ -22,6 +22,8 @@ export default function BackgroundImageComponent({image, title, tagLine}) {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.tagLine}>{tagLine}</Text>
         <SearchBarComponent />
+
+        <Text style={styles.para}>Developed By Arnab Mondal</Text>
       </View>
     </ImageBackground>
   );
@@ -50,4 +52,13 @@ const styles = StyleSheet.create({
     fontFamily: 'Lobster-Regular',
     elevation: 15,
   },
+  para: {
+    color: colors.white,
+    alignSelf: 'center',
+    fontSize: 12,
+    fontFamily: 'Poppins-SemiBold',
+    elevation: 15,
+    textTransform: 'uppercase',
+    letterSpacing: 1.5
+  }
 });
