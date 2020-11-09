@@ -153,9 +153,9 @@ android {
         }
         release {
             storeFile file('your_key_name.keystore')
-            storePassword '8001268005@JM'
+            storePassword 'adminjeet'
             keyAlias 'your_key_alias'
-            keyPassword '8001268005@JM'
+            keyPassword 'adminjeet'
         }
     }
     buildTypes {

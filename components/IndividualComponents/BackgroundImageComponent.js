@@ -22,8 +22,6 @@ export default function BackgroundImageComponent({image, title, tagLine}) {
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.tagLine}>{tagLine}</Text>
         <SearchBarComponent />
-
-        <Text style={styles.para}>Developed By Arnab Mondal</Text>
       </View>
     </ImageBackground>
   );

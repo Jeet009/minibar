@@ -14,7 +14,9 @@ export default function SearchScreen() {
   const [cartData, setCartData] = useState();
   const [userData, setUserData] = useState();
   const [totalPrice, setTotalPrice] = useState(0);
+  const [totalPriceWithD, setTotalPriceWithD] = useState(0);
   const [totalQuantity, setTotalQuantity] = useState(0);
+  const [totalDeliveryCharge, setTotalDeliveryCharge] = useState(0);
   const [services, setServices] = useState([]);
   const [showOrderModal, setShowOrderModal] = useState(false)
 
@@ -39,18 +41,28 @@ export default function SearchScreen() {
 
           // Cart Algorithm
           let totalP = 0;
+          let totalPWithD = 0;
           let totalQ = 0;
+          let totalDeliveryC = 0;
           let serviceArray = [];
           dataArray.forEach((data) => {
             serviceArray.push(data.product_name);
             totalQ = totalQ + parseInt(data.quantity);
 
             if (parseInt(data.quantity) > 1) {
-              totalP = totalP + parseInt(data.product_price) * parseInt(data.quantity);
+              totalP = (totalP + parseInt(data.product_price) * parseInt(data.quantity));
+              totalPWithD = (totalPWithD + (parseInt(data.product_price) + 30) * parseInt(data.quantity));
+              totalDeliveryC = totalDeliveryC + 30 * parseInt(data.quantity);
               setTotalPrice(totalP);
+              setTotalPriceWithD(totalPWithD);
+              setTotalDeliveryCharge(totalDeliveryC);
             } else {
               totalP = totalP + parseInt(data.product_price);
+              totalPWithD = (totalPWithD + parseInt(data.product_price) + 30);
+              totalDeliveryC = totalDeliveryC + 30;
               setTotalPrice(totalP);
+              setTotalPriceWithD(totalPWithD);
+              setTotalDeliveryCharge(totalDeliveryC);
             }
 
             setTotalQuantity(totalQ);
@@ -109,7 +121,7 @@ export default function SearchScreen() {
         {item.product_name}
         </Text>
         <Text style={styles.para}>
-                Price : {item.product_price} /-
+                Price : {item.product_price}
         </Text>
         <View style={styles.quantity}>
         <Icon
@@ -157,8 +169,13 @@ export default function SearchScreen() {
               ListFooterComponent={
                 <View style={styles.container}>
                   <View>
-                    <Text style={styles.para}>Total Price : {totalPrice} / -</Text>
+                  
+                    <Text style={styles.para}>Total Item Price : {totalPrice} / -</Text>
+                    <Text style={styles.paraWithBorder}>Total Delivery Charge : {totalDeliveryCharge} / -</Text>
+                    <Text style={styles.para}>Total Price With Delivery Charge : {totalPriceWithD} / -</Text>
+                    <Text>{'\n'}</Text>
                     <Text style={styles.para}>Total Quantity : {totalQuantity}</Text>
+                    <Text style={styles.para}>*Delivery Charge Per Product : 30 /-</Text>
                   </View>
                 </View>
               }
@@ -167,7 +184,7 @@ export default function SearchScreen() {
               {!showOrderModal && <Text style={styles.buttonText}>Place Order</Text>}
               {showOrderModal && <Text style={styles.buttonText}>Canceled, Try Again</Text>}
           </TouchableOpacity>  
-          {showOrderModal && <OrderConfirmModal products={services} totalPrice={totalPrice} totalQuantity={totalQuantity} userData={userData} />}
+          {showOrderModal && <OrderConfirmModal products={services} totalPrice={totalPriceWithD} totalQuantity={totalQuantity} userData={userData} />}
       </LinearGradient>
    
     );  
@@ -209,9 +226,16 @@ const styles = StyleSheet.create({
     },
     para: {
        fontFamily: 'Poppins-SemiBold',
-        fontSize: 12,
+        fontSize: 10,
         textTransform: 'uppercase',
         letterSpacing: 2 
+  },
+  paraWithBorder: {
+    fontFamily: 'Poppins-SemiBold',
+        fontSize: 10,
+        textTransform: 'uppercase',
+        letterSpacing: 2 ,
+        borderBottomWidth: 0.5
   },
   quantity: {
     flex: 1,
@@ -224,7 +248,7 @@ const styles = StyleSheet.create({
     
     text: {
         fontFamily: 'Poppins-Light',
-        fontSize: 18,
+        fontSize: 14,
         textTransform: 'uppercase',
         letterSpacing: 2
   },

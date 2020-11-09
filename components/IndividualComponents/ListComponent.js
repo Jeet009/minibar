@@ -60,7 +60,7 @@ export default function ListComponent({ name, id, price, category, imgUrl }) {
             {name}
             </Text>
             <Text style={styles.para}>
-                    Price : {price} /-
+                    Price : {price} /- 
             </Text>
             <Text style={styles.para}>
                     Category : {category}
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     },
     text: {
         fontFamily: 'Poppins-Light',
-        fontSize: 18,
+        fontSize: 14,
         textTransform: 'uppercase',
         letterSpacing: 2
     },

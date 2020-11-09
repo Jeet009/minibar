@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 
 
 export default function OrderConfirmModal({ products, totalPrice, totalQuantity, userData }) {
+    console.log(totalPrice)
     const [modalVisibility, setModalVisibility] = useState(true);
     const [confirmStep, setConfirmStep] = useState(false);
     const [checkBoxSelected, setCheckBoxSelected] = useState(false);
@@ -51,7 +52,10 @@ export default function OrderConfirmModal({ products, totalPrice, totalQuantity,
                     <Text style={styles.para}>Order Details - </Text>
                     <View style={styles.view}>
                         <Text style={styles.text}>Products : </Text>
-                        <Text style={styles.para}>{JSON.stringify(products)}</Text>
+                        {/* <Text style={styles.products}>{JSON.stringify(products)}</Text> */}
+                    </View>
+                    <View style={styles.view}>
+                        <Text style={styles.products}>{JSON.stringify(products)}</Text>
                     </View>
                     <View style={styles.view}>
                         <Text style={styles.text}>Total Price : </Text>
@@ -218,7 +222,13 @@ const styles = StyleSheet.create({
         fontFamily: 'Poppins-SemiBold',
         fontSize: 12,
         textTransform: 'uppercase',
-        letterSpacing: 2 
+        letterSpacing: 2,
+        color: colors.black 
+    },
+    products: {
+        fontFamily: 'Poppins-SemiBold',
+        fontSize: 12,
+        textTransform: 'uppercase'
     },
     
     text: {

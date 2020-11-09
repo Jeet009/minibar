@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { TouchableOpacity, Text, StyleSheet, Linking, View } from 'react-native'
+import { TouchableOpacity, Text, StyleSheet, Linking } from 'react-native'
 import colors from '../../constants/colors';
 
 export default function FloatingButton() {
     const [buttonText] = useState('Incase of queries, Contact Us')
     const endingTouch = () => {
-        Linking.openURL('https://wa.me/919046663330');
+        Linking.openURL('https://wa.me/91967114040');
     }
     return (    
         <>
